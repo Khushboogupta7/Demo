@@ -15,3 +15,9 @@ CREATE TABLE Employeesalary(
 );
 
 SELECT * FROM EmployeeDetails
+-- query 
+SELECT FullName
+FROM EmployeeDetails 
+JOIN Employeesalary
+ON EmployeeDetails.Emp_id = Employeesalary.Emp_id
+WHERE Salary> 50000;
