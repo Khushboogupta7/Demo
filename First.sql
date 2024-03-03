@@ -48,8 +48,10 @@ WHERE Manager_id =986;
 SELECT DISTINCT( Project)
 FROM Employeesalary
 
-
-
+-- 3. Write an SQL query to fetch the count of employees working in project ‘P1’. 
+SELECT COUNT(Emp_id)
+FROM Employeesalary
+WHERE Project = 'P1';
 
 
 
