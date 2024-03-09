@@ -57,3 +57,28 @@ WHERE Project = 'P1';
 
 
 
+
+-- 4. Write an SQL query to find the maximum, minimum, and average salary of the employees. 
+SELECT   MAX(Salary), MIN(Salary), AVG(Salary)
+FROM Employeesalary;
+
+-- 5. Write an SQL query to find the employee id whose salary lies in the range of 9000 and 15000. 
+SELECT Emp_id, Salary
+FROM Employeesalary
+WHERE Salary>=9000 AND SALARY <=15000;
+
+-- 6. Write an SQL query to fetch those employees who live in Toronto and work under the manager with ManagerId – 321. 
+SELECT Emp_id, City, Manager_id
+FROM EmployeeDetails
+WHERE City='Toronto' AND Manager_id='321';
+
+-- 7. Write an SQL query to fetch all the employees who either live in California or work under a manager with ManagerId – 321.  
+SELECT Emp_id, City, Manager_id
+FROM EmployeeDetails
+WHERE City='California' OR Manager_id='321';
+
+ -- 8. Write an SQL query to fetch all those employees who work on Projects other than P1. 
+SELECT Emp_id 
+FROM Employeesalary
+WHERE NOT Project = 'P1';
+
