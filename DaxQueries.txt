@@ -1,0 +1,24 @@
+DAX = Data Analysis Expressions
+Used to apply functions over tables or columns using functions and operators
+
+New Measure | Quick Measure | New Column | New Table
+
+1. COUNT
+Count Of Orders = Count(Orders[Order ID])
+Unique Count of Orders = DISTINCTCOUNT(Orders[Order ID])
+
+To add commment in the dax queries
+Count Of Orders = Count(Orders[Order ID])
+Shift+ Enter
+// Calculating total orders from order table
+
+02. Sum
+Sum of orders = SUM (Orders[Quantity]) 
+
+03. Date
+Order Day = WEEKDAY(Customers[Order Date],2)
+
+04. IF
+Syntax
+IF(LOgicalTest, ResultIfTrue, [ResultIfFalse])
+IF (order[Quantiy]>30, "Small Order", "Big Order")

@@ -1,0 +1,52 @@
+POWER Big
+01. Requiremenrt gathering
+02. Data Collection
+03. Data Transformation& Modelling
+04. Data Visualization blueprint
+05. Dashboard layout and design
+06. Interactivity & Navigation
+07. Testing
+08. Sharing
+09. Maintenance & Refresh
+------------------------------------------
+01. Requirement Gathering
+
+01.Identify Stakeholers: Establish a point of contact
+02.Understand Business Objecitves: Meeting & Communication
+03.High Level Data Study: Data Sources, Column Description, Data Type, Volume/frequency & Data Quality
+04.Define Scope: Documnet KPI. Timelines, Expectations etc.
+--------------------------------------------
+Project Goals>>
+01.Track current status of patient waiting list
+02.Analyse historically monthly trend of waiting in inpatient & outpatient categories
+03.Detailed speciality level & age profile analysis
+Data Scope>>
+2018-2021
+Metrics Required>>
+01.Average & median waiting list
+02.Current TOTal waiting list
+Views required:
+01.Summary Page
+02.Detailed page for granular analysis
+---------------------------------------------
+After importing data.
+
+01. Check data type
+02. Total rows loaded>> transform>> count rows>>
+03. Add Coulumn
+	Add column>> custom column>>
+04. Append table(Merging)
+	Append Queries>>Append queries as NEW>>First table- select table name>> Second Table - Select table name
+05. Promoting column header>> Transform data>>use first row as data
+06. Creating connections mannually
+	While building connections Cardinality is the key
+	Drag and drop the common table to creatre a connection in model view
+07. Average Wait List = AVERAGE(All_Data[Total])
+08.	Median Wait List = MEDIAN(All_Data[Total]) 
+09. Avg/Med Wait List = SWITCH(VALUES('Calculation Method'[Column1]), "Average", [Average Wait List], "Median", [Median Wait List])
+    Helps creating buttons as Average and Median
+10. Last month wait list = CALCULATE(SUM(All_Data[Total]), All_Data[Archive_Date] = MAX(All_Data[Archive_Date]))..
+11. 
+
+
+

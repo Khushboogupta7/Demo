@@ -1,0 +1,47 @@
+Transform>> Statistics>>Analysis>>Dashboard
+
+
+Change data set to a table
+
+Ctrl+T
+
+01. To trim odd spaces in a column
+
+--> =TRIM([@Column Name])
+     =TRIM([@Manager])
+
+
+02. TO select  a column 
+--> Ctrl +Shift+down arrow
+
+
+03. To Copy: Ctrl + C
+    To Paste: Alt + H + VV 
+
+04. To Remove column 
+    Select Column>> Ctrl -
+
+05. To Round up number in column with decimals
+    =ROUNDUP([@Quantity],num_digit)
+    =ROUNDUP([@Quantity],0)
+
+06. To add country or religion for the city column
+    Data>> Geography
+    Add column symbol appears>>Country/Region
+
+07. Remove Duplicates
+    Data>>Remove Duplicates>>ok
+
+08. To turn on data analysis option in Excel
+    File>> Option>> add in>> Analysis Toolpak>> Go>>  
+    Analysis Toolpak>>ok
+    Appears on right top screen 
+    Data Analysis>> Descriptive Statistics>> OK
+    
+    Input Range>> Select Column with nos(Ctrl+Shift+down 
+    key)>>  Summary Statistics on>>Output Range ON>>up arrow>> Select a cell where you want statistics
+
+We get mean medain mode minimum max sum count
+
+
+Inser>> Statistics Chart>>  

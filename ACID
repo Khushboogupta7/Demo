@@ -1,0 +1,38 @@
+A--> Acid properties
+	Useful in ecommerce and financial sectors
+
+
+1.Atomicity :  ALL OR NONE
+	    Transaction executed fully or none
+
+
+2.Consistency: Measurement of correctness
+
+	A = 100
+	B = 300
+	---------
+	A = 50
+	B = 350
+
+ Data items is valid before and after transaction is 400 hence  consistent
+
+3.Isolation : Multiple transaction can occur simultaeneously without interfering each other
+
+Executrs alone, (doesnt get idea or affected
+
+ )irrespective of any transactions happening
+
+ transactions T1,T2,T3,T4
+ None of transaction should affect T1
+ T1 Should execute isolated
+
+4.Durability:
+Once transaction is commited it is permanent , even if system fails, the changes in transactions are stores permanenlty.
+  When the transaction is updated with new value , store it       	in database permanently, becomes durable.
+
+
+
+
+
+
+
