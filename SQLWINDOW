@@ -1,0 +1,109 @@
+<!-- Basic SQL Queries -->
+<!-- The ability to write simple queries to pull data from one table. Includes understanding of the WHERE clause and logical operators like AND, OR, and NOT. -->
+
+<!-- SQL JOINs -->
+<!-- The ability to pull data from multiple tables. Practical skills in using various types of SQL JOINs: INNER JOIN, LEFT JOIN, RIGHT JOIN, FULL JOIN, self-join, and others. -->
+
+<!-- Standard SQL Functions -->
+<!-- The ability to use numeric, text, and date and time SQL functions. Practical skills in working with NULL. -->
+
+<!-- REPORTING -->
+<!-- Basic SQL Reports -->
+<!-- The ability to analyze data and prepare reports at a basic level. Practical skills in using GROUP BY, ORDER BY, HAVING, LIMIT, and DISTINCT clauses. -->
+
+<!-- Intermediate SQL Reports -->
+<!-- The ability to analyze data and prepare reports at an intermediate level. Practical skills in working with sets (UNION, UNION ALL, INTERSECT), subqueries, and correlated subqueries. -->
+
+<!-- Complex SQL Reports -->
+<!-- The ability to analyze data and prepare insightful reports at a proficient level. Practical skills in using window functions, Common Table Expressions, and recursive queries. -->
+
+
+
+-- The customer table 
+-- columns are id, first_name, last_name, join_date, and country.
+
+-- The movie table 
+-- columns are id, title, release_year, genre, and editor_ranking.
+
+-- review table 
+-- columns are id, rating, customer_id (references the customer table), and movie _id (references the movie table).
+
+
+-- single_rental table  
+-- columns are id, rental_date, rental_period, platform, customer_id (references the customer table), 
+-- movie_id (references the movie table), payment_date, and payment_amount.
+
+-- subscription table  
+-- columns are id, length (in days), start_date, platform, payment_date, payment_amount, and customer_id (references the customer table).
+
+
+-- giftcard table  
+-- columns are id, amount_worth, customer_id (references the customer table), payment_date, and payment_amount.
+
+-- For each single rental, show the rental_date, the title of the movie rented, its genre, the payment amount, and 
+-- the rank of the rental in terms of the price paid (the most expensive rental should have rank = 1). 
+-- The ranking should be created separately for each movie genre. 
+-- Allow the same rank for multiple rows and allow gaps in numbering.
+ 
+SELECT rental_date, title, genre, payment_amount ,
+RANK()OVER(PARTITION BY genre ORDER BY  payment_amount DESC)
+FROM movie
+JOIN single_rental
+ON single_rental.movie_id = movie.id;
+
+-- Why did we choose RANK() instead of DENSE_RANK() or ROW_NUMBER()? 
+-- The instruction says that the same rank for multiple rows is allowed;
+
+
+-- Exercise 2: Find 2nd Giftcard-Purchasing Customer
+
+-- Show the first and last name of the customer who bought 
+-- the second most-recent gift card, along with the date when the payment took place. 
+-- Assume that a unique rank is assigned for each gift card purchase.
+
+WITH ranking AS (
+SELECT first_name, last_name,payment_date, 
+ROW NUMBER() OVER(ORDER BY payment_date DESC) as RANK
+FROM customer
+JOIN giftcard
+ON Customer.id = giftcard.customer_id)
+SELECT irst_name, last_name,payment_date, 
+FROM ranking
+WHERE rank = 2;
+
+-- We are going to show information about customers and their gift card purchases, so we need to join the customer table with the giftcard table on their common column, (customer_id).
+
+-- The instruction says to find the customer who bought the second most-recent gift card. To do that, let's first rank the gift card purchases using the ROW_NUMBER() function; we assume that a unique rank is assigned for each gift card purchase.
+
+-- The inner SELECT statement selects customer information and the dates of their gift card purchases. Then, we rank the rows using the ROW_NUMBER() function to mark the second most-recent gift card purchase (i.e. the rank value of 2).
+
+-- This inner SELECT statement is a Common Table Expression (CTE). It is wrapped inside the WITH clause and is named ranking. We select relevant data from this CTE and provide a condition in the WHERE clause to output only the row with rank equal 2.
+
+-- Why do we need to define a CTE and then query it? Because we cannot use the rank column in the WHERE clause of the inner SELECT. The reason is the order of execution, which is: FROM, JOINs, WHERE, GROUP BY, HAVING, SELECT, DISTINCT, ORDER BY, and LIMIT. So the rank column is not yet defined at the time when the WHERE clause of the inner SELECT would be executed.
+
+
+------------------------------------------------------------------------
+
+-- Exercise 3: Calculate Running Total for Payments
+
+-- For each single rental, show the id, rental_date, payment_amount and the running total of 
+-- payment_amounts of all rentals from the oldest one (in terms of rental_date) to the current row.
+
+SELECT id, rental_date, payment_amount, 
+SUM(payment_amounts) OVER(ORDER BY rental_date ROWS BETWEEN UNBOUNDED PRECEDING AND CURRENT ROW )
+FROM single_rental;
+
+-- First, we select information about each single rental from the single_rental table.
+
+-- Next, we are going to find the running total of payment amounts of all rentals using the SUM() function 
+-- (which takes the payment_amount column as its argument) with the OVER() clause. 
+-- The instruction says to find the running total from the oldest rental date until the current row date. 
+-- So, in the OVER() clause, we need to order the data by the rental_date column and then define ROWS to be counted in the running total, 
+-- from the oldest date (BETWEEN UNBOUNDED PRECEDING) until the current date (AND CURRENT ROW).
+
+-- In this query, the ROWS BETWEEN UNBOUNDED PRECEDING AND CURRENT ROW clause specifies that 
+-- the window includes all rows from the start of the partition up to and including the current row.
+
+-- UNBOUNDED PRECEDING means that the starting boundary is the first row in the partition, and 
+-- UNBOUNDED FOLLOWING means that the ending boundary is the last row in the partition.
+---------------------------------------------------------------------------------------------------
