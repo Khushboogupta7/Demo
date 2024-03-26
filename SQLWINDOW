@@ -40,10 +40,10 @@
 -- giftcard table  
 -- columns are id, amount_worth, customer_id (references the customer table), payment_date, and payment_amount.
 
--- For each single rental, show the rental_date, the title of the movie rented, its genre, the payment amount, and 
--- the rank of the rental in terms of the price paid (the most expensive rental should have rank = 1). 
--- The ranking should be created separately for each movie genre. 
--- Allow the same rank for multiple rows and allow gaps in numbering.
+Excercise 1: For each single rental, show the rental_date, the title of the movie rented, its genre, the payment amount, and 
+the rank of the rental in terms of the price paid (the most expensive rental should have rank = 1). 
+The ranking should be created separately for each movie genre. 
+Allow the same rank for multiple rows and allow gaps in numbering.
  
 SELECT rental_date, title, genre, payment_amount ,
 RANK()OVER(PARTITION BY genre ORDER BY  payment_amount DESC)
@@ -55,11 +55,11 @@ ON single_rental.movie_id = movie.id;
 -- The instruction says that the same rank for multiple rows is allowed;
 
 
--- Exercise 2: Find 2nd Giftcard-Purchasing Customer
+Exercise 2: Find 2nd Giftcard-Purchasing Customer
 
--- Show the first and last name of the customer who bought 
--- the second most-recent gift card, along with the date when the payment took place. 
--- Assume that a unique rank is assigned for each gift card purchase.
+Show the first and last name of the customer who bought 
+the second most-recent gift card, along with the date when the payment took place. 
+Assume that a unique rank is assigned for each gift card purchase.
 
 WITH ranking AS (
 SELECT first_name, last_name,payment_date, 
@@ -84,10 +84,10 @@ WHERE rank = 2;
 
 ------------------------------------------------------------------------
 
--- Exercise 3: Calculate Running Total for Payments
+Exercise 3: Calculate Running Total for Payments
 
--- For each single rental, show the id, rental_date, payment_amount and the running total of 
--- payment_amounts of all rentals from the oldest one (in terms of rental_date) to the current row.
+For each single rental, show the id, rental_date, payment_amount and the running total of 
+payment_amounts of all rentals from the oldest one (in terms of rental_date) to the current row.
 
 SELECT id, rental_date, payment_amount, 
 SUM(payment_amounts) OVER(ORDER BY rental_date ROWS BETWEEN UNBOUNDED PRECEDING AND CURRENT ROW )
