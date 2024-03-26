@@ -9,11 +9,11 @@
 -- The columns are id, procedure_date, doctor_id (references the doctor table), patient_id, category, name, price, and score.
 
 
--- Exercise 4: Calculate Moving Average for Scores
+Exercise 4: Calculate Moving Average for Scores
 
--- For each procedure, show the following information: procedure_date, doctor_id, category, name, score and the average score 
--- from the procedures in the same category which are included in the following window frame: 
--- the two previous rows, the current row, and the three following rows in terms of the procedure date.
+For each procedure, show the following information: procedure_date, doctor_id, category, name, score and the average score 
+from the procedures in the same category which are included in the following window frame: 
+the two previous rows, the current row, and the three following rows in terms of the procedure date.
 
 SELECT procedure_date, doctor_id, category, name, score,
 AVG(score)OVER (PARTITION BY category ORDER BY procedure_date,ROWS BETWEEN 2 PREECEDING AND 3 FOLLOWING )
@@ -34,10 +34,10 @@ FROM procedure;
 -- two previous rows (BETWEEN 2 PRECEDING) and three following rows (AND 3 FOLLOWING), including the current row.
 -------------------------------------------------------------------------------------------------------------------------------------------------
 
--- Exercise 5: Find the Difference Between Procedure Prices
+Exercise 5: Find the Difference Between Procedure Prices
 
--- For each procedure, show the following information: id, procedure_date, name, price, price of the previous procedure 
--- (in terms of the id) and the difference between these two values. Name the last two columns previous_price and difference.
+For each procedure, show the following information: id, procedure_date, name, price, price of the previous procedure 
+(in terms of the id) and the difference between these two values. Name the last two columns previous_price and difference.
 
 SELECT
   id,
@@ -63,17 +63,17 @@ FROM procedure;
 
 -----------------------------------------------------------------------------------------------------------------------------------------------
 
--- Exercise 6: Find the Difference Between the Current and Best Prices
+Exercise 6: Find the Difference Between the Current and Best Prices
 
--- For each procedure, show the:
+For each procedure, show the:
 
--- procedure_date
--- name
--- price
--- category
--- score
--- Price of the best procedure (in terms of the score) from the same category (column best_procedure).
--- Difference between this price and the best_procedure (column difference).
+procedure_date
+name
+price
+category
+score
+Price of the best procedure (in terms of the score) from the same category (column best_procedure).
+Difference between this price and the best_procedure (column difference).
 
 
 SELECT
@@ -97,12 +97,12 @@ FROM procedure;
 
 -----------------------------------------------------
 
--- Exercise 7: Find the Best Doctor per Procedure.
+Exercise 7: Find the Best Doctor per Procedure.
 
--- Find out which doctor is the best at each procedure. For each procedure, select the procedure name and 
--- the first and last name of all doctors who got high scores (higher than or equal to the average score for this procedure). 
--- Rank the doctors per procedure in terms of the number of times they performed this procedure. 
--- Then, show the best doctors for each procedure, i.e. those having a rank of 1.
+Find out which doctor is the best at each procedure. For each procedure, select the procedure name and 
+the first and last name of all doctors who got high scores (higher than or equal to the average score for this procedure). 
+Rank the doctors per procedure in terms of the number of times they performed this procedure. 
+Then, show the best doctors for each procedure, i.e. those having a rank of 1.
 
 WITH cte AS (
   SELECT
