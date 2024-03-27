@@ -1,0 +1,180 @@
+1. SQL (Structured Query Language):
+SQL is a standardized programming language used for managing relational databases.
+Commonly employed in data analysis, SQL allows users to retrieve, manipulate, and analyze data stored in databases efficiently.
+
+2. SQL vs. NoSQL Databases:
+
+SQL Databases: Relational databases structured in tables. Examples: MySQL, PostgreSQL.
+NoSQL Databases: Non-relational, distributed databases. Examples: MongoDB, Cassandra.
+Key Differences:
+SQL databases use structured query language, while NoSQL databases use different query languages.
+SQL databases are table-based, NoSQL databases can be document-based, key-value pairs, etc.
+SQL databases are typically vertically scalable, while NoSQL databases are horizontally scalable.
+
+3. Retrieve Unique Values:
+
+sql
+
+SELECT DISTINCT column_name FROM table_name;
+
+4. JOIN Clause in SQL:
+
+Type of JOINs: INNER JOIN, LEFT JOIN, RIGHT JOIN, FULL JOIN.
+Example:
+sql
+
+SELECT orders.order_id, customers.customer_name
+FROM orders
+JOIN customers ON orders.customer_id = customers.customer_id;
+
+5. Purpose of GROUP BY Clause:
+
+GROUP BY: Groups rows sharing a common value.
+Usage: Used with aggregate functions like SUM, COUNT.
+
+6. Handling NULL Values:
+
+Use IS NULL to identify NULL values.
+Use COALESCE(column_name, default_value) to replace NULLs with a default value.
+
+7. Find Second Highest Salary:
+
+sql
+
+SELECT MAX(salary) 
+FROM employees 
+WHERE salary < (SELECT MAX(salary) FROM employees);
+
+8. Subquery vs. JOIN:
+
+Subquery: Nested query within another query.
+Difference: JOIN combines columns from two or more tables, while a subquery retrieves data based on the outer query results.
+
+9. Updating Data:
+
+sql
+
+UPDATE table_name
+SET column1 = value1, column2 = value2
+WHERE condition;
+
+10. ACID Properties of a Transaction:
+
+ACID: Atomicity, Consistency, Isolation, Durability.
+Ensures: Transactions are reliable, complete, and maintain data integrity.
+
+11. HAVING Clause:
+
+HAVING: Used with GROUP BY to filter grouped data based on conditions.
+Use: Apply conditions to aggregated data, similar to WHERE but for grouped results.
+
+12. INNER JOIN vs. LEFT JOIN:
+
+INNER JOIN: Retrieves records with matching values in both tables.
+LEFT JOIN: Retrieves all records from the left table and matching records from the right table.
+
+13. Total Count of Rows:
+
+sql
+
+SELECT COUNT(*) FROM table_name;
+
+14. Find Duplicate Records:
+
+sql
+
+SELECT column1, COUNT(*)
+FROM table_name
+GROUP BY column1
+HAVING COUNT(*) > 1;
+
+15. Normalization and Denormalization:
+
+Normalization: Process of organizing data into a structure that reduces redundancy and dependency.
+Denormalization: Redundant data is added to a normalized database to improve read performance.
+
+16. Indexing in SQL:
+
+Indexing: Improves search performance by providing quicker access to rows in a table.
+Types: B-Tree, Hash, Bitmap, etc.
+
+17. SQL Query Optimization:
+
+Use indexes where appropriate.
+Limit the result set using WHERE clause.
+Optimize joins and avoid unnecessary subqueries.
+
+18. Triggers in SQL:
+
+Trigger: Special type of stored procedure invoked automatically in response to events.
+Usage: Implement constraints, log changes, maintain synchronization.
+
+19. UNION vs. UNION ALL:
+
+UNION: Combines result sets, removes duplicates.
+UNION ALL: Combines result sets including duplicates.
+
+20. Get Third Maximum Value:
+
+sql
+
+SELECT DISTINCT column_name
+FROM table_name
+ORDER BY column_name DESC
+LIMIT 1 OFFSET 2;
+
+
+
+-------------------------------------------------------------------------------------------
+
+1. What is SQL and what are its main features?
+ 
+ Answer: SQL stands for Structured Query Language. It is a standard language for interacting with relational databases. 
+ Its main features include querying, updating, inserting, and deleting data from databases. SQL also allows for the creation and 
+ modification of database schemas, as well as the management of user permissions and security.
+
+2. Order of writing SQL query?
+
+ Answer: The general order of writing an SQL query is:
+ - SELECT
+ - FROM
+ - WHERE
+ - GROUP BY
+ - HAVING
+ - ORDER BY
+
+3. Order of execution of SQL query?
+
+ Answer: The order of execution of an SQL query is:
+ - FROM
+ - WHERE
+ - GROUP BY
+ - HAVING
+ - SELECT
+ - ORDER BY
+
+4. What are some of the most common SQL commands?
+
+ Answer: Some of the most common SQL commands include SELECT, INSERT, UPDATE, DELETE, CREATE, DROP, and ALTER.
+
+5. What’s a primary key & foreign key?
+
+ Answer: A primary key is a column or a set of columns that uniquely identifies each row in a table. 
+ A foreign key is a column or a set of columns that establishes a relationship between two tables, 
+ referencing the primary key in another table.
+
+6. All types of joins and questions on their outputs?
+
+ Answer: Types of joins in SQL include INNER JOIN, LEFT JOIN (or LEFT OUTER JOIN), RIGHT JOIN (or RIGHT OUTER JOIN), and
+  FULL JOIN (or FULL OUTER JOIN). Questions on their outputs might involve understanding which records are included based on 
+  the join condition and what happens to unmatched records.
+
+7. Explain all window functions and difference between them?
+
+ Answer: Window functions in SQL are used to perform calculations across a set of rows related to the current row. 
+ Common window functions include ROW_NUMBER(), RANK(), DENSE_RANK(), NTILE(), and LEAD(). The difference between them lies in 
+ how they assign numbers or ranks to rows within a partition
+
+ ---------------------------------------------------------------------------------------
+
+ 
