@@ -1,0 +1,109 @@
+import numpy as np
+import pandas as pd
+import seaborn as sns
+import matplotlib.pyplot as plt
+
+!pip install openpyxl\n\nimport pandas as pd\n\n# Now you can read the .xlsx file using pandas\ndataset = pd.read_excel('Superstore_USA-20240402-233127.xlsx', engine='openpyxl')
+
+!pip install openpyxl
+
+import pandas as pd
+
+# Now you can read the .xlsx file using pandas
+dataset = pd.read_excel('Superstore_USA-20240402-233127.xlsx', engine='openpyxl')
+dataset.head(2)
+
+dataset.info()
+dataset.isnull().sum()
+dataset['Product Base Margin'].fillna(dataset['Product Base Margin'].mean(),inplace=True)
+
+dataset.shape
+
+dataset['Order Priority'].value_counts()
+Order Priority
+High             1970
+Low              1926
+Not Specified    1881
+Medium           1844
+Critical         1804
+Critical            1
+Name: count, dtype: int64
+
+
+dataset['Order Priority'].unique()
+
+dataset['Order Priority'] = dataset['Order Priority'].replace('Critical ','Critical')
+
+dataset['Order Priority'].unique()
+
+# Graph | Countplot | Sns
+
+plt.figure(figsize=(5,4))
+sns.countplot(x='Order Priority', data = dataset)
+plt.title("Count of Order Priority")
+plt.savefig("Count of Order Priority.jpg")
+plt.show()
+
+# Shipping Mode
+
+dataset['Ship Mode'].value_counts()
+
+x = dataset['Ship Mode'].value_counts().index
+
+y = dataset['Ship Mode'].value_counts().values
+
+plt.figure(figsize=(5,4))
+plt.pie(y, labels=x, startangle=60, autopct="%1.2f%%")
+plt.legend(loc=2)
+
+plt.show()
+
+# Product category| Shipping Mode
+
+sns.countplot(x="Ship Mode",data=dataset, hue="Product Category")
+plt.show()
+
+# Customer Segment
+
+plt.figure(figsize=(5,4))
+sns.countplot(x="Customer Segment",data=dataset)
+plt.show()
+
+# Product Category
+
+plt.figure(figsize=(5,4))
+sns.countplot(x="Product Category",data=dataset)
+plt.show()
+
+# Product sub category
+
+plt.figure(figsize=(10,6))
+sns.countplot(x="Product Category",data=dataset[dataset["Product Category"]=="Office Supplies"], hue="Product Sub-Category")
+plt.show()
+
+# Order Date
+
+dataset.info()
+dataset["Order Year"] = dataset['Order Date'].dt.year
+dataset['Order Year'].value_counts()
+plt.figure(figsize=(5,4))
+sns.countplot(x="Order Year",data=dataset)
+plt.show()
+
+# Profit by category
+
+sns.barplot(x="Product Category",y="Profit",data=dataset,estimator='sum')
+plt.show()
+
+# Orders by State
+
+dataset['State or Province'].value_counts()[:5]
+
+plt.figure(figsize=(5,4))
+sns.countplot(x="State or Province",data=dataset)
+plt.show()
+
+# Product base margin with respect to Product category
+
+sns.barplot(x="Product Category",y="Product Base Margin",data=dataset,estimator='sum')
+plt.show()
