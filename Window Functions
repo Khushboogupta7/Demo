@@ -1,0 +1,254 @@
+functions empower us to extract deeper insights from our data – and accomplish complex tasks easily.
+
+SQL window functions offer a versatile toolkit for enhanced data analysis. This toolkit includes:
+
+>> ROW_NUMBER(), RANK(), DENSE_RANK(), and NTILE() for ranking data.
+
+>> SUM(), AVG(), COUNT(), MAX(), and MIN() for aggregations.
+
+>> LEAD() and LAG() for comparing data across rows.
+
+>> FIRST_VALUE() and LAST_VALUE() for extracting boundary values.
+
+SYNTAX:
+
+Window_Function()
+            OVER( [<PARTITION BY ClAUSE>]
+                  [<ORDER BY Clause>]
+                  [<ROW or RANGE Clause>]
+)
+
+Furthermore, the OVER() clause enables precise data partitioning and ordering within these functions, 
+enabling users to perform complex calculations on defined subsets of data.
+
+ PARTITION BY clause >>  to make divisions or partitions of rows so we can specify the rows to be used in the window function computation. 
+ ORDER BY clause >>      to sort the order of rows that exists in a partition. 
+ ROW or RANGE clause >>  to form a subset of rows in the current partition
+
+The Window functions are divided into three categories:-
+
+01. Aggregate Window Functions
+02. Analytical Window Functions
+03. Ranking Window Functions
+
+
+01. Aggregate Window Function>> perform mathematical calculations on the data stored in MySQL. 
+    They are used to aggregate the data. 
+    SUM()
+    AVG()
+    MIN()
+    MAX()
+    COUNT()
+    
+02. Analytical window functions>> carry out analysis of the data stored in a database. 
+
+    NTILE()
+    LAG()
+    LAST_VALUE()
+    FIRST_VALUE()
+    LEAD()
+
+03. Ranking Window Function >> give rankings to each row of a partition. 
+
+    RANK()
+    DENSE_RANK()
+    ROW_NUMBER()
+    PERCENT_RANK()
+    CUME_DIST()
+
+    a. ROW_NUMBER() Function>>  provides a normal serial number to each row present within a partition. 
+    It is just a normal serial-wise numbering of rows in ascending order. 
+    Even the rows which have the same value when using the ORDER BY clause has been given a different row number.
+
+    Syntax:
+
+    SELECT
+    row_number() OVER([<PARTITION BY ClAUSE>]
+                    [<ORDER BY Clause>]
+                    [<ROW or RANGE Clause>])
+                    as alias_name
+    FROM table_name;
+
+    RANK() and DENSE_RANK() Functions
+
+    b. RANK()>> used to assign ranks to the rows within an ordered partition.
+    The rows which contain the same values will be assigned the same rank, 
+    with the next ranking or rankings skipped. 
+    
+    For example, if we have 4 items with the same value 
+    starting with ranking 1 then all 4 items will have rank 1, 
+    and the ranking from the 5th item would be 5 with 2,3,4 skipped.
+
+    Syntax:
+
+    SELECT 
+    RANK() OVER ([<PARTITION BY ClAUSE>]
+                [<ORDER BY Clause>]
+                [<ROW or RANGE Clause>])
+                as alias_name
+    FROM table_name;
+
+
+    c. DENSE_RANK() >>  to assign rankings to the rows within an ordered partition. 
+    It is almost as same as the RANK() window function but 
+    in DENSE_RANK() no rankings are skipped even if the rows have the same value.
+
+    Syntax:
+
+    SELECT 
+    DENSE_RANK() OVER ([<PARTITION BY ClAUSE>]
+                [<ORDER BY Clause>]
+                [<ROW or RANGE Clause>])
+                as alias_name
+    FROM table_name;
+
+04. Analytical function
+    LAG() and LEAD() Functions: LAG() and LEAD() both are types of analytical window functions in MySQL. 
+    As the name suggests, the LAG() function starts the value from the previous row 
+    (returns NULL if starting from the first row as no preceding row exists). 
+    It returns the value of the row before the current row of the partition. 
+    Whereas the LEAD() function returns the value of the row after the current row in a partition. 
+    It starts from the value of the next row (returns NULL if no row if no more rows are available).
+
+    Syntax (LAG):
+
+    SELECT
+    LAG() OVER([<PARTITION BY ClAUSE>]
+            [<ORDER BY Clause>]
+            [<ROW or RANGE Clause>])
+    FROM table_name;
+
+    Syntax (LEAD):
+
+    SELECT
+    LEAD() OVER([<PARTITION BY ClAUSE>]
+                [<ORDER BY Clause>]
+                [<ROW or RANGE Clause>])
+    FROM table_name;
+
+    The LAG() function returns values from one preceding row i.e., 
+    here it returns NULL in the first row as there was no preceding row available. 
+    The LEAD() function returns the value from one subsequent row i.e.,
+    here it starts returning the value from the second row and 
+    the last row returns the NULL value as there are no subsequent rows available.
+
+
+
+    FIRST_VALUE() and LAST_VALUE() Functions 
+    The FIRST_VALUE() function shows the value from the first row of a window frame or within a partition. 
+    LAST_VALUE() will return the value of the last row of a window frame or within a partition.
+
+    Syntax(FIRST_VALUE):
+
+    SELECT
+    FIRST_VALUE() OVER([<PARTITION BY ClAUSE>]
+                    [<ORDER BY Clause>]
+                    [<ROW or RANGE Clause>])
+    FROM table_name;
+
+
+    Syntax(LAST_VALUE):
+
+    SELECT
+    LAST_VALUE() OVER([<PARTITION BY ClAUSE>]
+                    [<ORDER BY Clause>]
+                    [<ROW or RANGE Clause>])
+    FROM table_name;
+
+
+-------------------------------------------------
+Code(FIRST_VALUE)
+
+SELECT employee_name, department,salary,
+FIRST_VALUE(employee_name)
+ OVER (
+      PARTITION BY department
+      ORDER BY salary
+      ) as least_salary
+FROM Employee;
+
+Code(LAST_VALUE)
+
+
+SELECT employee_name, department,salary,
+LAST_VALUE(employee_name)
+ OVER (
+      PARTITION BY department
+      ORDER BY salary
+      RANGE BETWEEN 
+            UNBOUNDED PRECEDING AND 
+            UNBOUNDED FOLLOWING
+      ) as max_salary
+FROM Employee;
+
+
+In the above example, we have used both the FIRST_VALUE() and 
+LAST_VALUE() methods on the same table. Here, using the FIRST_VALUE() 
+method we've returned the name of the employee having least_salary for 
+every partition (department). And using the LAST_VALUE() we've returned 
+the name of the employee having max_salary for every partition (department).
+
+NOTE: RANGE BETWEEN UNBOUNDED PRECEDING AND UNBOUNDED FOLLOWING is a 
+clause that defines the frame in the partition from the first row to the last row.
+
+
+---------------------------------------------------------
+
+NTILE() Function>> used to divide rows into groups within an ordered partition. 
+Each of the divided groups will be assigned a number which will be the same for that group of rows. 
+Every group is represented by a number.
+
+Syntax
+
+SELECT 
+NTILE(number_of_groups) OVER([<PARTITION BY ClAUSE>]
+                             [<ORDER BY Clause>]
+                             [<ROW or RANGE Clause>])
+                             as alias_name
+FROM table_name;
+
+
+Advantages when performance is taken into consideration for window functions in MySQL:
+
+01. Window functions in MySQL operate on a set of rows(Window) rather than a single column.
+02. Window function keeps individual rows and adds a summary column.
+03. Window functions in MySQL can be applied on fixed as well as sliding window frames.
+04. Window functions in MySQL contain several methods which are used to efficiently extract meaningful information from the database.
+
+Conclusion
+
+01. The Window functions in MySQL are special kinds of pre-defined methods that are used to perform computations on a set of rows.
+02. The set of rows on the methods that are applied is referred to as a Window.
+03. Using an OVER clause with window functions in MySQL is mandatory.
+04. The Window functions are divided into three categories:
+    Aggregate Window Functions 
+    Analytical Window Functions 
+    Ranking Window Functions
+
+
+
+
+
+
+-------------------------------------------------------------------------------------------------------------------------------------
+
+Dataset
+The following exercises use the online movie store database, which contains six tables.
+
+01. The customer table stores information on all registered customers. The columns are id, first_name, last_name, join_date, and country.
+
+02. The movie table contains records of all movies available in the store. The columns are id, title, release_year, genre, and editor_ranking.
+
+03. The review table stores customer ratings of the movies. The columns are id, rating, customer_id (references the customer table), and movie _id (references the movie table).
+
+04. The single_rental table stores information about movies that were rented for a certain period of time by customers. The columns are id, rental_date, rental_period, platform, customer_id (references the customer table), movie _id (references the movie table), payment_date, and payment_amount.
+
+05. The subscription table stores records for all customers who subscribed to the store. The columns are id, length (in days), start_date, platform, payment_date, payment_amount, and customer_id (references the customer table).
+
+06. The giftcard table contains information about purchased gift cards. The columns are id, amount_worth, customer_id (references the customer table), payment_date, and payment_amount.
+
+Questions
+
+Exercise 1: Rank Rentals by Price
+
+>> 

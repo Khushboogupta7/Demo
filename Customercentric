@@ -1,0 +1,34 @@
+Custom centric 
+*Key Questions Answered:*
+1. Discover how to calculate the average age of your customers.
+2. Learn the steps to determine the total count of your customer base.
+3. Master the art of categorizing your customers based on their total orders and purchases. We'll identify VIP Customers, Loyal Customers, and Periodic Buyers.
+4. Explore how to analyze revenue based on whether your customers have children or not, gaining critical insights into their preferences.
+5. Implement a dynamic ranking system to identify and celebrate your top-performing customers, boosting your business strategies.
+6. Gain valuable insights into revenue trends by examining customer gender.
+
+
+01. To get age of customers
+Customer Age = DATEDIFF(DimCustomer[BirthDate],TODAY(),YEAR)
+
+02. To get age category
+Age Category = SWITCH 
+            (TRUE(), 
+                AND([Customer Age]>=0,  [Customer Age]<=10), "0-10",
+                AND([Customer Age]>=10,  [Customer Age]<=20), "11-20",
+                AND([Customer Age]>=20,  [Customer Age]<=30), "21-30",
+                AND([Customer Age]>=30,  [Customer Age]<=40), "31-40",
+                AND([Customer Age]>=40,  [Customer Age]<=50), "41-50",
+                AND([Customer Age]>=50,  [Customer Age]<=60), "51-60",
+                AND([Customer Age]>=60,  [Customer Age]<=70), "61-70",
+                "Over 70"
+            )
+
+03. CF Age-Group = 
+    IF ([Total Revenue]>[Avg Revenue(Age Group)],1,0)
+
+04. Total Revenue = SUMX( 'Fact Table','Fact Table'[OrderQuantity]*RELATED(DimProduct[Price]))  
+
+05. Avg Revenue(Age Group) = AVERAGEX(ALL(DimCustomer[Age Category]),[Total Revenue])
+
+

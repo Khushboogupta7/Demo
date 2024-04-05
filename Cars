@@ -1,0 +1,55 @@
+KPI Requirement
+
+01.Sales Overview
+   -> Year- to -year (YTD) Total Sales
+   -> Month to Date (MTD) Total Sales
+   -> Year over Year (YOY) Growth in Total Sales
+   -> Differenc ebetween YTD Sales and previous Year-to-     date(PYTD) sales
+
+02.Average Price Analysis
+   -> YTD Average Price
+   -> MTD Average Price
+   -> YoY Growth in Average Price
+   -> Difference between YTD Average Price and PYTD Average Price
+   
+03.Cars Sold Metrics
+   -> YTD Cars Sold
+   -> MTD Cars Sold
+   -> YoY Growth in Cars Sold
+   -> Difference between YTD Cars Sold And PYTD Cars Sold
+
+04. Charts Requiremtns
+
+01.YTD Sales weekly Trend
+02. YTD Total Sales by Body style
+03. YTD Total Sales by color
+04. YTD Cars sold by dealer region
+05.Company wise sales trend in grid form
+06.Details grid showing all cars sales information
+
+
+
+
+
+Connecting to Excel File>>
+Data cleaning
+Data modelling
+Data processing
+power query
+Date Tables
+DAX
+Time  Intelligence Func
+YTD, MTD, PYTD
+MAX, MAXX, RANK
+Date Function
+Custom Charts
+Text Function
+Filter Function
+Calculate
+SUM/SUMX
+Conditional Formatting's
+Maos & Custom Maps
+Creating KPI's
+New Card Visual
+Creating Functions
+Navigations

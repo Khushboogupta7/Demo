@@ -1,0 +1,61 @@
+Why Power BI
+1. Search Volumne in Google is high
+2. Maximum features(280visuals)
+3.Cost of Power BI: Cheapest
+4.Data Connectivity : Can pull data from 180 different data sources
+5. Recognized by Gartner
+Without power bi can be done
+01. include and exclude>> select two colors >> rught click>>include
+
+02. View data and export>>select color>>show data point as table>> 3 dots >>export data
+if to be kept safe
+file menu>> options & settings>> options>> current file>> report settings>> export off
+
+Security in power BI
+
+Row level security>> restrict data access
+Visual trends>> ananlyse and prepare  dashboard>> Apply power bi
+
+---------------------------------
+
+
+
+POWER BI
+
+
+--------------------------------------------------------------------------------------------------------------------------------
+
+
+To check null tables
+
+
+View>> column quality
+
+
+Home>> Remove rows>> Remove top rows>> number of rows  
+
+
+Remove duplicates
+
+
+Select column>> Group by>>NEW Column Namee(Count)>>Operations(Count Rows)>>OK
+
+
+Drop Down>> Number Filters>> Does not equal to>> 1>> You will get repeated values or 2
+
+
+To select all >> Pressshift and slide acrooss end>> Come tp front >> Select first column>> Right click>> Remove Duplicate
+
+
+----------------------------------------------------------------------------------------------------------------------------------
+
+
+CHANGE DATA TYPES
+
+
+To select all >> Pressshift and slide acrooss end>> Come tp front >> Transform>>detect data type
+
+
+General>>Effects >> Visual Border
+
+
