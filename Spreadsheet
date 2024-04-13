@@ -1,0 +1,111 @@
+<!-- a spreadsheet is a digital worksheet. It stores, organizes, and sorts data. This is important because the usefulness of your data depends on how well it's structured.
+
+Spreadsheets also have some really useful features called formulas and functions. A formula is a set of instructions that performs a specific calculation using the data in a spreadsheet. 
+Formulas can do basic things like add, subtract, multiply and divide, but they don't stop there. You can also use formulas to find the average of a number set. Look up a particular value, return the sum of a set of values that meets a particular rule, and so much more. A function is a preset command that automatically performs a specific process or task using the data in a spreadsheet.
+functions can help make you more efficient. Those are the spreadsheet basics for now.
+
+ A query language is a computer programming language that allows you to retrieve and manipulate data from a database
+
+It's easy to understand and works very well with all kinds of databases. 
+
+----------------------------------
+data visualization is the graphical representation of information. Some examples include graphs, maps, and tables.
+
+----------------------------------
+
+visualizations are so important. They help data analysts communicate their insights to others, in an effective and compelling way.
+
+----------------------------------
+
+
+Looker is also popular with data analysts because it gives them an easy way to create visuals based on the results of a query.
+
+With Looker, you can give stakeholders a complete picture of your work by showing them visualization data and the actual data related to it.
+-----------------------------------------
+
+Spreadsheets
+Data analysts rely on spreadsheets to collect and organize data. Two popular spreadsheet applications you will probably use a lot in your future role as a data analyst are Microsoft Excel and Google Sheets. 
+
+Spreadsheets structure data in a meaningful way by letting you 
+
+Collect, store, organize, and sort information
+
+Identify patterns and piece the data together in a way that works for each specific data project
+
+Create excellent data visualizations, like graphs and charts. 
+
+---------------------------------------------
+
+Databases and query languages
+A database is a collection of structured data stored in a computer system. Some popular Structured Query Language (SQL) programs include MySQL, Microsoft SQL Server, and BigQuery.
+
+Query languages 
+
+Allow analysts to isolate specific information from a database(s)
+
+Make it easier for you to learn and understand the requests made to databases
+
+Allow analysts to select, create, add, or download data from a database for analysis
+
+----------------------------------------------
+
+Visualization tools
+Data analysts use a number of visualization tools, like graphs, maps, tables, charts, and more. Two popular visualization tools are Tableau and Looker.
+
+These tools 
+
+Turn complex numbers into a story that people can understand 
+
+Help stakeholders come up with conclusions that lead to informed decisions and effective business strategies  
+
+Have multiple features 
+
+             - Tableau's simple drag-and-drop feature lets users create interactive graphs in dashboards and   
+
+                worksheets 
+
+             - Looker communicates directly with a database, allowing you to connect your data right to the visual 
+
+                 tool you choose 
+----------------------------------------------
+
+Spreadsheets
+
+Databases 
+
+Accessed through a software application 
+
+Database accessed using a query language 
+
+Structured data in a row and column format
+
+Structured data using rules and relationships
+
+Organizes information in cells
+
+Organizes information in complex collections
+
+Provides access to a limited amount of data
+
+Provides access to huge amounts of data
+
+Manual data entry
+
+Strict and consistent data entry
+
+Generally one user at a time
+
+Multiple users 
+
+Controlled by the user 
+
+Controlled by a database management system
+ -->
+--------------------------------------------------------------
+<!-- An attribute is a characteristic or quality of data used to label a column in a table. More commonly, attributes are referred to as column names, column labels, headers, or the header row. Let's add some headers to our table. I'll click in cell A1 and type the words first name.
+
+In a dataset, a row is also called an observation. An observation includes all of the attributes for something contained in a row of a data table.
+
+Formulas are like a calculator, but more powerful. A formula is a set of instructions that performs a specific action using the data in a spreadsheet. To do this, the formula uses cell references for the values it's calculating. 
+
+In Google sheets, a spreadsheet is automatically saved in your Google Drive. For Excel and other spreadsheets, you'll save them as a file -->
